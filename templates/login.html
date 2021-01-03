@@ -1,0 +1,60 @@
+ {% extends "layout.html" %}
+ {% include "flash.html" %}
+{% block content %}
+ <main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+        <div class="registration">
+            <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label-sm") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-sm is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-sm") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label-sm") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-sm is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-sm") }}
+                    {% endif %}
+                </div>
+                <div class="form-check">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn-sm btn-outline-success") }}
+            </div>
+                <small class="text-muted">
+                    <a href="#">Forgot Password</a>
+                </small>
+            </form>
+    </div>
+    </div>
+    <div class="container">
+        <div class=col-md-8">
+            <small class="text-muted">
+                Need To Create An Account? <a href="{{ url_for('register') }}" class="btn btn-link btn-sm" role="button">Register</a>
+            </small>
+        </div>
+    </div>
+ </main>
+{% endblock content %}

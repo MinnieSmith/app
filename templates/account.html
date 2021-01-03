@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include "user_profile.html" %}
+{% include "flash.html" %}
+
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-md-8">
+        <div class="drug-classes">
+            <h4> Drug Classes</h4>
+            {% for drugclass in drugclasses %}
+            <div>
+                <p>
+                    <a class="btn-sm btn-warning" href="{{ url_for('show_drugs', drug_class = drugclass.name) }}" role="button">
+                       {{drugclass.name}}
+                    </a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+      <div class="col-md-4">
+        <div class="sidebar-section">
+            <h4>New Drugs</h4>
+            {% for newdrug in newdrugs %}
+            <div>
+                <p>
+                    <a class="btn-sm btn-warning" href="{{ url_for('new_drugs')}}" role="button">
+                       {{newdrug.name}}
+                    </a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+  </div>
+</main>
+{% endblock content %}
