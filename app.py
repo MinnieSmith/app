@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
+from blinker import Namespace
 
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
@@ -19,10 +20,11 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 bcrypt = Bcrypt(app)
 session = DBSession()
+my_signals = Namespace()
 
-
-
-
+CLIENT_ID = json.loads(
+    open('client_secrets.json', 'r').read())['web']['client_id']
+app.config['SECRET_KEY'] = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
 
 login_manager = LoginManager()
 login_manager.init_app(app)
