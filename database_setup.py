@@ -1,7 +1,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from flask_login import LoginManager, UserMixin
+from flask_login import UserMixin
 from flask import Flask
 
 app = Flask(__name__)
@@ -10,6 +10,7 @@ engine = create_engine('sqlite:///drugcatalog.db', connect_args={'check_same_thr
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
 
 class User(Base, UserMixin):
     __tablename__ = 'user'

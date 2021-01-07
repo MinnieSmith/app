@@ -20,9 +20,9 @@ DBSession = sessionmaker(bind=engine)
 bcrypt = Bcrypt(app)
 session = DBSession()
 
-CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
-app.config['SECRET_KEY'] = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+
+
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
